@@ -1,0 +1,21 @@
+name: Verify Commits
+
+on:
+  pull_request:
+    types: [opened, synchronize, re-opened]
+
+permissions:
+  contents: read # for checkout
+
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Commit Lint
+        run:  npx --yes commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}
