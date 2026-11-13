@@ -1,0 +1,39 @@
+name: Semantic Release & Build
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read # for checkout
+
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    # needs: verify
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for trusted publishing and npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - run: npm i semantic-release-export-data
+      - run: npm i @semantic-release/{git,changelog}
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+      - name: Release
+        run: npx semantic-release -y --repository-url git@github.com:${{ github.repository }}.git
+        id: next-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.CD_GITHUB_TOKEN }}
