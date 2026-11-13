@@ -6,5 +6,5 @@
 A really big feature!
 
 
-A second big feature...
+A second big feature!
  
