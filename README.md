@@ -1,4 +1,5 @@
 # semver-test
 
 asd
+bad~
  
