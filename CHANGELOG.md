@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ZavenArra/semver-test/compare/v1.0.0...v1.0.1) (2026-11-13)
+
+
+### Bug Fixes
+
+* bump ([3e9d080](https://github.com/ZavenArra/semver-test/commit/3e9d0800a53204ddded7e596e5ae7be6b7006db3))
+
 # 1.0.0 (2026-11-13)
 
 
