@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@semantic-release/changelog": "^7.0.0",
+    "@semantic-release/git": "^11.0.1",
+    "semantic-release-export-data": "^1.2.0"
+  }
+}
