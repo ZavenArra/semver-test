@@ -1,8 +1,8 @@
-name: Semantic Release & Build
+name: Verify Commits
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, re-opened]
 
 permissions:
   contents: read # for checkout
