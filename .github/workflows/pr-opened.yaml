@@ -1,0 +1,17 @@
+name: Semantic Release & Build
+
+on:
+  pull_request:
+    types: [opened]
+
+permissions:
+  contents: read # for checkout
+
+
+jobs:
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commit Lint
+        run:  npx --yes commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }}

@@ -1,7 +1,8 @@
 name: Semantic Release & Build
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
@@ -12,6 +13,7 @@ permissions:
 jobs:
   verify:
     name: Verify
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Commit Lint
@@ -19,6 +21,7 @@ jobs:
 
   release:
     name: Release
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     needs: verify
     permissions:
